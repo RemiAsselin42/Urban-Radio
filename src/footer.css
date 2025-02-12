@@ -1,0 +1,38 @@
+.footer {
+  background-color: #1c1c1c;
+  color: #fff;
+  padding: 1rem 5rem;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo img {
+  height: 60px;
+  width: auto;
+}
+
+.footer-slogan {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.footer-slogan b {
+  color: #fb6624;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-links a {
+  color: #fb6624;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #fff;
+}

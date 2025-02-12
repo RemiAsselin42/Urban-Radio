@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Lalezar", serif;
+  letter-spacing: 1px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #eee;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}

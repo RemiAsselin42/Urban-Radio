@@ -1,0 +1,59 @@
+.scroll-down {
+  transform: scale(4);
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 800px;
+}
+
+.mouse {
+  height: 23px;
+  width: 14px;
+  border-radius: 10px;
+  transform: none;
+  border: 2px solid #ffffff4d;
+  top: 170px;
+}
+
+.wheel {
+  height: 5px;
+  width: 2px;
+  display: block;
+  margin: 5px auto;
+  background: #ffffff4d;
+  position: relative;
+  border-radius: 1px;
+}
+
+.wheel {
+  animation: mouse-wheel 1s ease-in-out infinite;
+}
+
+@keyframes mouse-wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(1px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes mouse-scroll {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
