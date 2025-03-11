@@ -18,16 +18,16 @@ const audioContents: AudioContent[] = [
   {
     id: "1",
     title: "Interview avec la Mission Locale",
-    source: "./audio/interview.mp3",
+    source: "/Urban-Radio/audio/interview.mp3",
     type: "interview",
-    image: "src/img/interview.png",
+    image: "/Urban-Radio/src/img/interview.png",
   },
   {
     id: "2",
     title: "Micro-trottoir à Saint-Etienne",
-    source: "./audio/micro-trottoir.mp3",
+    source: "/Urban-Radio/audio/micro-trottoir.mp3",
     type: "micro-trottoir",
-    image: "src/img/micro-trottoir.png",
+    image: "/Urban-Radio/src/img/micro-trottoir.png",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="logo">
-        <img src="src/img/logo.png" alt="Urban Radio" />
+        <img src="/Urban-Radio/src/img/logo.png" alt="Urban Radio" />
       </div>
       <div className="scroll-down">
         <div className="mouse">
@@ -153,7 +153,7 @@ export default function App() {
                   }`}
                   onClick={() => setIsMixCloudVisible(true)}
                   style={{
-                    backgroundImage: `url(src/img/interview.png)`,
+                    backgroundImage: `url(/Urban-Radio/src/img/interview.png)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -185,7 +185,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="footer-logo">
-          <img src="src/img/logo.png" alt="Urban Radio" />
+          <img src="/Urban-Radio/src/img/logo.png" alt="Urban Radio" />
         </div>
         <div className="footer-slogan">
           <p>
