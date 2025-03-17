@@ -1,0 +1,190 @@
+.page-container {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.page-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.page {
+  flex: 0 0 100%;
+  width: 100%;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Home -> About transition */
+.page-slider.sliding-right .home-page {
+  animation: slideOut 0.5s forwards;
+}
+
+.page-slider.sliding-right .about-page {
+  animation: slideIn 0.5s forwards;
+}
+
+/* About -> Home transition */
+.page-slider.sliding-left .home-page {
+  animation: slideInReverse 0.5s forwards;
+}
+
+.page-slider.sliding-left .about-page {
+  animation: slideOutReverse 0.5s forwards;
+}
+
+/* Ajout des keyframes pour les animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInReverse {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutReverse {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.page.sliding-in {
+  animation: slideIn 0.5s forwards;
+}
+
+.page.sliding-out {
+  animation: slideOut 0.5s forwards;
+}
+
+.page.sliding-in-reverse {
+  animation: slideInReverse 0.5s forwards;
+}
+
+.page.sliding-out-reverse {
+  animation: slideOutReverse 0.5s forwards;
+}
+
+.page-arrows {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  visibility: visible;
+}
+
+.home-page .page-arrows {
+  top: 83%;
+  left: calc(50% - 50px);
+}
+
+.about-page .page-arrows {
+  top: 83%;
+  left: calc(150% - 50px);
+}
+
+.page-arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  position: relative; /* Ajout pour positionner le pseudo-élément */
+}
+
+.page-arrow:hover {
+  background-color: var(--primary-color);
+}
+
+/* Texte qui apparaît au survol des flèches */
+.page-arrow::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(28, 28, 28, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Flèche droite - "Qui sommes-nous ?" */
+.page-arrow.right::before {
+  content: "Qui sommes-nous ?";
+  right: 60px;
+}
+
+/* Flèche gauche - "Page d'accueil" */
+.page-arrow.left::before {
+  content: "Page d'accueil";
+  left: 60px;
+}
+
+/* Affichage du texte au survol */
+.page-arrow:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ajout d'une bordure décorative */
+.page-arrow::before {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.page-arrow svg {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.page-arrow.left {
+  margin-left: 1rem;
+}
+
+.page-arrow.right {
+  margin-right: 1rem;
+}
