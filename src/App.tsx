@@ -103,6 +103,17 @@ export default function App() {
 
   return (
     <div className="app">
+      <header className="main-header">
+        <div className="header-logo">
+          <img src="/Urban-Radio/src/img/logo.png" alt="Urban Radio" />
+        </div>
+        <nav className="header-nav">
+          <a href="#accueil">Accueil</a>
+          <a href="#contenus">Nos Contenus</a>
+          <a href="#about">Qui sommes-nous ?</a>
+        </nav>
+      </header>
+
       <div className="logo">
         <img src="/Urban-Radio/src/img/logo.png" alt="Urban Radio" />
       </div>
