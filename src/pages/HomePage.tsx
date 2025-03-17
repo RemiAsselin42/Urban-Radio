@@ -71,7 +71,7 @@ export function HomePage() {
                 }`}
                 onClick={() => setIsMixCloudVisible(true)}
                 style={{
-                  backgroundImage: `url(/Urban-Radio/src/img/interview.png)`,
+                  backgroundImage: `url(/src/img/interview.png)`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
