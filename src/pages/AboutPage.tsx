@@ -39,9 +39,13 @@ export function AboutPage() {
               notre région.
             </p>
             <p>
-              À travers nos interviews, micro-trottoirs et playlists exclusives,
-              nous explorons les tendances, les initiatives locales et les
-              talents émergents qui façonnent notre paysage urbain.
+              À travers une interview, un micro-trottoir et un playlist
+              exclusive, nous explorons les tendances, les initiatives locales
+              et les talents émergents qui façonnent notre paysage urbain.
+            </p>
+            <p>
+              L'interview et le micro-trottoir sont réalisés par Grégoire Gsell,
+              Hector Lefevre et moi-même, Rémi Asselin.
             </p>
           </div>
         </div>
