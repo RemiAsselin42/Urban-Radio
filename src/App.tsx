@@ -74,7 +74,7 @@ function AppContent() {
     <div className="app">
       <header className="main-header">
         <div className="header-logo">
-          <img src="/src/img/logo.png" alt="Urban Radio" />
+          <img src="/Urban-Radio/logo.png" alt="Urban Radio" />
         </div>
         <nav className="header-nav">
           <a
@@ -104,7 +104,7 @@ function AppContent() {
       {activePage === "home" && (
         <>
           <div className="logo">
-            <img src="/src/img/logo.png" alt="Urban Radio" />
+            <img src="/Urban-Radio/logo.png" alt="Urban Radio" />
           </div>
           <div className="scroll-down">
             <div className="mouse">
@@ -131,7 +131,7 @@ function AppContent() {
 
       <footer className="footer">
         <div className="footer-logo">
-          <img src="/src/img/logo.png" alt="Urban Radio" />
+          <img src="/Urban-Radio/logo.png" alt="Urban Radio" />
         </div>
         <div className="footer-slogan">
           <p>

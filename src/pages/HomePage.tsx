@@ -52,7 +52,7 @@ export function HomePage() {
                 className={`mixcloud-overlay`} 
                 onClick={openMixcloudPlayer} // Ceci devrait être spécifique si gardé séparément
                 style={{
-                  backgroundImage: `url(/src/img/interview.png)`, 
+                  backgroundImage: `url(/Urban-Radio/interview.png)`, 
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
