@@ -37,7 +37,7 @@ export const audioContents: AudioContent[] = [
   },
   {
     id: "3",
-    title: "Notre dernier mix",
+    title: "Notre playlist musicale",
     type: "playlist",
     image: "/Urban-Radio/playlist.png",
     mixcloudFeed: "/Infocoml3/playlist-urban-radio/",

@@ -2,7 +2,13 @@ import { useState, useEffect, useContext } from "react";
 // import { AudioPlayer } from "./components/AudioPlayer"; // Supprimé
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
-import { FaInstagram, FaTwitter, FaDiscord } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaTwitter,
+  FaDiscord,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { AppProvider } from "./context/AppProvider";
 import AppContext from "./context/AppContext";
 import "./App.css";
@@ -20,6 +26,7 @@ function AppContent() {
   } = useContext(AppContext);
 
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let timeoutId: number;
@@ -70,10 +77,32 @@ function AppContent() {
     });
   }, [activePage]);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleNavLinkClick = (page: "home" | "about") => {
+    setActivePage(page);
+    setIsMobileMenuOpen(false); // Fermer le menu après la sélection
+  };
+
+  const handleLogoClick = () => {
+    setActivePage("home");
+    setIsMobileMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="app">
+    <div className={`app ${isMobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <header className="main-header">
-        <div className="header-logo">
+        <div
+          className="header-logo"
+          onClick={handleLogoClick}
+          style={{ cursor: "pointer" }}
+        >
           <img src="/Urban-Radio/logo.png" alt="Urban Radio" />
         </div>
         <nav className="header-nav">
@@ -81,7 +110,7 @@ function AppContent() {
             href="#contenus"
             onClick={(e) => {
               e.preventDefault();
-              setActivePage("home");
+              handleNavLinkClick("home");
             }}
             className={activePage === "home" ? "active" : ""}
           >
@@ -91,14 +120,42 @@ function AppContent() {
             href="#about"
             onClick={(e) => {
               e.preventDefault();
-              setActivePage("about");
+              handleNavLinkClick("about");
             }}
             className={activePage === "about" ? "active" : ""}
           >
             Qui sommes-nous ?
           </a>
         </nav>
+        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </div>
       </header>
+
+      {isMobileMenuOpen && (
+        <nav className="mobile-nav">
+          <a
+            href="#contenus"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavLinkClick("home");
+            }}
+            className={activePage === "home" ? "active" : ""}
+          >
+            Nos Contenus
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavLinkClick("about");
+            }}
+            className={activePage === "about" ? "active" : ""}
+          >
+            Qui sommes-nous ?
+          </a>
+        </nav>
+      )}
 
       {/* Page d'accueil */}
       {activePage === "home" && (

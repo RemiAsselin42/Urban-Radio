@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  bottom: -5px;
 }
 
 .footer-logo img {
@@ -35,4 +36,29 @@
 
 .social-links a:hover {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .footer-logo img {
+    height: 40px;
+  }
+
+  .footer-slogan {
+    display: none; /* Masquer le slogan en mobile */
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
+
+  .social-links a {
+    font-size: 1.5rem;
+  }
 }
