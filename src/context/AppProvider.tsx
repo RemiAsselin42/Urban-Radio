@@ -1,66 +1,41 @@
 import { ReactNode, useState } from "react";
 import AppContext from "./AppContext";
-import { AudioContent, PageType } from "../types/audioTypes";
-import { audioContents } from "../data/audioData";
+import { PageType } from "../types/audioTypes";
+import { audioContents } from "./AppContext";
 
 interface AppProviderProps {
   children: ReactNode;
 }
 
 export function AppProvider({ children }: AppProviderProps) {
-  const [currentAudio, setCurrentAudio] = useState("");
-  const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState(false);
-  const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isMixCloudVisible, setIsMixCloudVisible] = useState(false);
   const [activePage, setActivePage] = useState<PageType>("home");
+  // Initialiser avec le flux de la playlist par défaut ou le premier élément
+  const [currentMixcloudFeed, setCurrentMixcloudFeed] = useState<string>(
+    audioContents.find((content) => content.type === "playlist")
+      ?.mixcloudFeed || "/Infocoml3/playlist-urban-radio/"
+  );
 
-  const handleAudioClick = (content: AudioContent) => {
-    if (activeAudioId === content.id) {
-      // Si c'est déjà l'audio actif, on toggle play/pause
-      const audioElement = document.querySelector("audio");
-      if (audioElement) {
-        if (isPlaying) {
-          audioElement.pause();
-        } else {
-          audioElement.play();
-        }
-      }
-      setIsPlaying(!isPlaying);
-    } else {
-      // Si c'est un nouvel audio, on le lance
-      setCurrentAudio(content.source);
-      setActiveAudioId(content.id);
-      setIsAudioPlayerOpen(true);
-      setIsPlaying(true);
-    }
+  const openMixcloudPlayer = (feed: string) => {
+    setCurrentMixcloudFeed(feed);
+    setIsMixCloudVisible(true);
   };
 
-  const closeAudioPlayer = () => {
-    setCurrentAudio("");
-    setActiveAudioId(null);
-    setIsAudioPlayerOpen(false);
-    setIsPlaying(false);
+  const closeMixcloudPlayer = () => {
+    setIsMixCloudVisible(false);
   };
 
   return (
     <AppContext.Provider
       value={{
         audioContents,
-        currentAudio,
-        isAudioPlayerOpen,
-        activeAudioId,
-        isPlaying,
         isMixCloudVisible,
         activePage,
-        setCurrentAudio,
-        setIsAudioPlayerOpen,
-        setActiveAudioId,
-        setIsPlaying,
+        currentMixcloudFeed, // Fournir le flux actuel
         setIsMixCloudVisible,
         setActivePage,
-        handleAudioClick,
-        closeAudioPlayer,
+        openMixcloudPlayer, // Fournir la fonction mise à jour
+        closeMixcloudPlayer,
       }}
     >
       {children}

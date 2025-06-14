@@ -1,45 +1,46 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode } from "react";
 
+// AudioContent mis à jour ici aussi
 export interface AudioContent {
   id: string;
   title: string;
-  source: string;
-  type: "interview" | "micro-trottoir";
+  type: "interview" | "micro-trottoir" | "playlist"; // Ajout de "playlist"
   image: string;
+  mixcloudFeed: string; // Ajout du flux Mixcloud
 }
 
 interface AppContextType {
   audioContents: AudioContent[];
-  currentAudio: string;
-  isAudioPlayerOpen: boolean;
-  activeAudioId: string | null;
-  isPlaying: boolean;
   isMixCloudVisible: boolean;
   activePage: "home" | "about";
-  setCurrentAudio: (source: string) => void;
-  setIsAudioPlayerOpen: (isOpen: boolean) => void;
-  setActiveAudioId: (id: string | null) => void;
-  setIsPlaying: (isPlaying: boolean) => void;
+  currentMixcloudFeed: string; // Ajout du flux Mixcloud actuel
   setIsMixCloudVisible: (isVisible: boolean) => void;
   setActivePage: (page: "home" | "about") => void;
-  handleAudioClick: (content: AudioContent) => void;
-  closeAudioPlayer: () => void;
+  openMixcloudPlayer: (feed: string) => void; // Modifié pour accepter le flux
+  closeMixcloudPlayer: () => void;
 }
 
 export const audioContents: AudioContent[] = [
   {
     id: "1",
-    title: "Interview avec la Mission Locale",
-    source: "/audio/interview.mp3",
+    title: "Interview avec Nora Othman",
     type: "interview",
     image: "/src/img/interview.png",
+    mixcloudFeed: "/Infocoml3/urban-radio-linterview-avec-nora-othman/",
   },
   {
     id: "2",
     title: "Micro-trottoir à Saint-Etienne",
-    source: "/audio/micro-trottoir.mp3",
     type: "micro-trottoir",
     image: "/src/img/micro-trottoir.png",
+    mixcloudFeed: "/Infocoml3/urban-radio-micro-trottoir/",
+  },
+  {
+    id: "3",
+    title: "Notre dernier mix",
+    type: "playlist",
+    image: "/src/img/playlist.png",
+    mixcloudFeed: "/Infocoml3/playlist-urban-radio/",
   },
 ];
 
@@ -47,61 +48,21 @@ const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export default AppContext;
 
+// AppProvider est maintenant dans son propre fichier, mais si on le garde ici pour la définition de audioContents :
+// La définition de AppProvider sera mise à jour dans son propre fichier.
+// Cette section est juste pour montrer la mise à jour de `audioContents` si elle était définie ici.
+// La logique de AppProvider sera dans src/context/AppProvider.tsx
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [currentAudio, setCurrentAudio] = useState("");
-  const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState(false);
-  const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMixCloudVisible, setIsMixCloudVisible] = useState(false);
-  const [activePage, setActivePage] = useState<"home" | "about">("home");
-
-  const handleAudioClick = (content: AudioContent) => {
-    if (activeAudioId === content.id) {
-      // Si c'est déjà l'audio actif, on toggle play/pause
-      const audioElement = document.querySelector("audio");
-      if (audioElement) {
-        if (isPlaying) {
-          audioElement.pause();
-        } else {
-          audioElement.play();
-        }
-      }
-      setIsPlaying(!isPlaying);
-    } else {
-      // Si c'est un nouvel audio, on le lance
-      setCurrentAudio(content.source);
-      setActiveAudioId(content.id);
-      setIsAudioPlayerOpen(true);
-      setIsPlaying(true);
-    }
-  };
-
-  const closeAudioPlayer = () => {
-    setCurrentAudio("");
-    setActiveAudioId(null);
-    setIsAudioPlayerOpen(false);
-    setIsPlaying(false);
-  };
-
+  // ... la logique de AppProvider sera mise à jour dans son fichier dédié ...
+  // Pour l'instant, on s'assure que AppContext est correctement typé et exporté.
+  // Le reste de la logique (useState, fonctions) est dans AppProvider.tsx
   return (
     <AppContext.Provider
-      value={{
-        audioContents,
-        currentAudio,
-        isAudioPlayerOpen,
-        activeAudioId,
-        isPlaying,
-        isMixCloudVisible,
-        activePage,
-        setCurrentAudio,
-        setIsAudioPlayerOpen,
-        setActiveAudioId,
-        setIsPlaying,
-        setIsMixCloudVisible,
-        setActivePage,
-        handleAudioClick,
-        closeAudioPlayer,
-      }}
+      value={
+        {
+          /* valeurs mises à jour dans AppProvider.tsx */
+        } as AppContextType
+      }
     >
       {children}
     </AppContext.Provider>

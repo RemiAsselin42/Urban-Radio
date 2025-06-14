@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { AudioPlayer } from "./components/AudioPlayer";
+// import { AudioPlayer } from "./components/AudioPlayer"; // Supprimé
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { FaInstagram, FaTwitter, FaDiscord } from "react-icons/fa";
@@ -12,13 +12,11 @@ import "./styles/PageSlider.css";
 
 function AppContent() {
   const {
-    currentAudio,
-    isAudioPlayerOpen,
-    isPlaying,
-    setIsPlaying,
+    isMixCloudVisible,
+    closeMixcloudPlayer,
     activePage,
     setActivePage,
-    closeAudioPlayer,
+    currentMixcloudFeed, // Récupérer le flux actuel
   } = useContext(AppContext);
 
   const [isScrolling, setIsScrolling] = useState(false);
@@ -165,14 +163,28 @@ function AppContent() {
         </div>
       </footer>
 
-      {currentAudio && (
-        <AudioPlayer
-          source={currentAudio}
-          isOpen={isAudioPlayerOpen}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          onClose={closeAudioPlayer}
-        />
+      {isMixCloudVisible && (
+        <div className="mixcloud-global-player">
+          <iframe
+            width="100%"
+            height="60"
+            // Utiliser currentMixcloudFeed et encodeURIComponent pour la sécurité
+            src={`https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(
+              currentMixcloudFeed
+            )}`}
+            frameBorder="0"
+            allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"
+            title="Mixcloud Player"
+            key={currentMixcloudFeed} // Ajouter une clé pour forcer le re-rendu de l'iframe si le flux change
+          ></iframe>
+          <button
+            onClick={closeMixcloudPlayer}
+            className="close-mixcloud-button"
+            title="Fermer le lecteur Mixcloud"
+          >
+            &times;
+          </button>
+        </div>
       )}
     </div>
   );

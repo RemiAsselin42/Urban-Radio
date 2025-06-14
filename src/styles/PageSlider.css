@@ -109,13 +109,13 @@
 }
 
 .home-page .page-arrows {
-  top: 83%;
+  top: 85%;
   left: calc(50% - 50px);
 }
 
 .about-page .page-arrows {
-  top: 83%;
-  left: calc(150% - 50px);
+  top: 85%;
+  left: calc(150% - 66px);
 }
 
 .page-arrow {

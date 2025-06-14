@@ -28,7 +28,6 @@ export function AboutPage() {
 
         <div className="about-content">
           <div className="mission-statement">
-            <h2>Notre Mission</h2>
             <p>
               <strong>Urban Radio</strong> est un projet de cours ayant qu'un
               objectif : donner la parole à ceux qui font vibrer la ville.

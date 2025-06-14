@@ -1,27 +1,20 @@
 export interface AudioContent {
   id: string;
   title: string;
-  source: string;
-  type: "interview" | "micro-trottoir";
+  type: "interview" | "micro-trottoir" | "playlist"; // Ajout de "playlist"
   image: string;
+  mixcloudFeed: string; // Ajout du flux Mixcloud
 }
 
 export type PageType = "home" | "about";
 
 export interface AppContextType {
   audioContents: AudioContent[];
-  currentAudio: string;
-  isAudioPlayerOpen: boolean;
-  activeAudioId: string | null;
-  isPlaying: boolean;
   isMixCloudVisible: boolean;
   activePage: PageType;
-  setCurrentAudio: (source: string) => void;
-  setIsAudioPlayerOpen: (isOpen: boolean) => void;
-  setActiveAudioId: (id: string | null) => void;
-  setIsPlaying: (isPlaying: boolean) => void;
+  currentMixcloudFeed: string; // Ajout du flux Mixcloud actuel
   setIsMixCloudVisible: (isVisible: boolean) => void;
   setActivePage: (page: PageType) => void;
-  handleAudioClick: (content: AudioContent) => void;
-  closeAudioPlayer: () => void;
+  openMixcloudPlayer: (feed: string) => void; // Modifié pour accepter le flux
+  closeMixcloudPlayer: () => void;
 }

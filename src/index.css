@@ -4,6 +4,11 @@
   box-sizing: border-box;
   font-family: "Lalezar", serif;
   letter-spacing: 1px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  :-webkit-scrollbar {
+    display: none;
+  }
 }
 
 html,
